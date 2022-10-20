@@ -52,7 +52,7 @@ const DragAndDrop = ({
 			<div
 				{...getRootProps({
 					className:
-						'bg-white d-flex text-dark align-items-center justify-content-center rounded flex-column border-neutral-4 border',
+						'bg-white d-flex text-dark align-items-center justify-content-center rounded flex-column border-neutral-4 border p-3 mb-2',
 				})}
 			>
 				<ClayInput
@@ -77,15 +77,20 @@ const DragAndDrop = ({
 					Select Files
 				</button>
 
-				<div className="mt-3 overflow-auto" style={{height: '12rem'}}>
-					<h5>Files</h5>
+				<div className="mt-3 overflow-auto" style={{height: '10rem'}}>
+					<h5 className="d-flex justify-content-center">Files</h5>
 
 					{acceptedFiles?.map((file, index) => (
-						<li key={index}>
-							File: {file.name} Type: {file.type}
-							Size:&nbsp;
-							{file.size} bytes
-						</li>
+						<div className="border-bottom d" key={index}>
+							<p className="font-weight-bolder m-0 text-neutral-10">
+								{file.name}&nbsp;
+							</p>
+
+							<p className="text-neutral-7">
+								Size:&nbsp;
+								{file.size} bytes
+							</p>
+						</div>
 					))}
 				</div>
 			</div>
