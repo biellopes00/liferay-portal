@@ -20,10 +20,12 @@ export default function useCompanyOptions(
 	handleSelected: (
 		country: LiferayPicklist,
 		company: LiferayAccountBrief,
+		currency: LiferayPicklist,
 		accountExternalReferenceCodeSF?: string
 	) => void,
 	currentCompany?: LiferayAccountBrief,
-	currentCountry?: LiferayPicklist
+	currentCountry?: LiferayPicklist,
+	currency?: LiferayPicklist
 ) {
 	const [selectedAccountBrief, setSelectedAccountBrief] = useState<
 		LiferayAccountBrief | undefined
@@ -40,10 +42,17 @@ export default function useCompanyOptions(
 					? currentCountry
 					: companyExtender?.country || {},
 				selectedAccountBrief,
+				companyExtender?.currency as LiferayPicklist,
 				companyExtender?.accountExternalReferenceCodeSF
 			);
 		}
-	}, [companyExtender, currentCountry, handleSelected, selectedAccountBrief]);
+	}, [
+		companyExtender,
+		currentCountry,
+		currency,
+		handleSelected,
+		selectedAccountBrief,
+	]);
 
 	const onCompanySelected = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const optionSelected = companyOptions.find(

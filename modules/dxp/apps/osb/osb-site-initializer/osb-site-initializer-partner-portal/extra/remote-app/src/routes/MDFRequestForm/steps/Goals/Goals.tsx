@@ -41,6 +41,8 @@ const Goals = ({
 		values,
 		...formikHelpers
 	} = useFormikContext<MDFRequest>();
+	// eslint-disable-next-line no-console
+	console.log('🚀 ~ file: Goals.tsx:44 ~ values:', values);
 
 	const {
 		companiesEntries,
@@ -51,9 +53,10 @@ const Goals = ({
 	const {companyOptions, onCompanySelected} = useCompanyOptions(
 		companiesEntries,
 		useCallback(
-			(country, company, accountExternalReferenceCodeSF) => {
+			(country, company, currency, accountExternalReferenceCodeSF) => {
 				setFieldValue('company', company);
 				setFieldValue('country', country);
+				setFieldValue('currency', currency);
 				setFieldValue(
 					'accountExternalReferenceCodeSF',
 					accountExternalReferenceCodeSF
@@ -62,7 +65,8 @@ const Goals = ({
 			[setFieldValue]
 		),
 		values.company,
-		values.country
+		values.country,
+		values.currency
 	);
 
 	const {
